@@ -62,7 +62,7 @@
       <file leaf-file-name="func.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/genetic/func.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="887" selection-end="887" vertical-scroll-proportion="0.34320557" vertical-offset="463" max-vertical-offset="1460">
+            <state line="19" column="54" selection-start="512" selection-end="512" vertical-scroll-proportion="0.39086294" vertical-offset="226" max-vertical-offset="1820">
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -73,7 +73,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="52" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="2680">
+            <state line="93" column="56" selection-start="4103" selection-end="4103" vertical-scroll-proportion="-5.6896553" vertical-offset="1695" max-vertical-offset="2760">
               <folding />
             </state>
           </provider>
@@ -253,6 +253,11 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\cygwin64\home\rejkowic\code\python\genetic\genetic" />
@@ -400,17 +405,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="748" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17053643" sideWeight="0.67156863" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17053643" sideWeight="0.7009967" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29900333" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -527,14 +532,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="52" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="2680">
+        <state line="93" column="56" selection-start="4103" selection-end="4103" vertical-scroll-proportion="-5.6896553" vertical-offset="1695" max-vertical-offset="2760">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/genetic/func.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="887" selection-end="887" vertical-scroll-proportion="0.34320557" vertical-offset="463" max-vertical-offset="1460">
+        <state line="19" column="54" selection-start="512" selection-end="512" vertical-scroll-proportion="0.39086294" vertical-offset="226" max-vertical-offset="1820">
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

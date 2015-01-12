@@ -51,14 +51,16 @@
                         <button type="submit" class="btn btn-default">Generuj</button>
 
                         <label for="pop_count">Liczebność populacji</label>
-                        <input id="pop_count" name="pop_count" type="text" class="form-control" value="{{ pop_count }}">
+                        <input id="pop_count" name="pop_count" type="text"
+                               class="form-control" value="{{ pop_count|default:'10' }}">
 
                         <label for="pop_size">Liczba bitów na osobnika</label>
                         <input id="pop_size" name="pop_size" type="text" class="form-control" value="8">
 
 
                         <label for="gen_count">Liczba pokoleń</label>
-                        <input id="gen_count" name="gen_count" type="text" class="form-control" value="{{ gen_count }}">
+                        <input id="gen_count" name="gen_count" type="text"
+                               class="form-control" value="{{ gen_count|default:'3' }}">
 
                         <hr/>
 
@@ -72,7 +74,8 @@
 
                         <div class="sel_method_param">
                             <label for="sel_method_param" >Rozmiar turnieju</label>
-                            <input id="sel_method_param" name="sel_method_param" type="text" class="form-control" value="3">
+                            <input id="sel_method_param" name="sel_method_param" type="text"
+                                   class="form-control" value="{{ sel_method_param|default:'3' }}">
                         </div>
 
                         <label for="cross_method">Krzyżowanie</label>
@@ -85,13 +88,14 @@
                         <hr/>
 
                         <label for="function">Funkcja</label>
-                        <input id="function" name="function" type="text" class="form-control" value="{{ function }}">
+                        <input id="function" name="function" type="text"
+                               class="form-control" value="{{ function|default:'-x*x - x + cos(10*x) - sin(50*x)' }}">
 
                         <label for="min">Minimum</label>
-                        <input id="min" name="min" type="text" class="form-control" value="{{ min }}">
+                        <input id="min" name="min" type="text" class="form-control" value="{{ min|default:'-1' }}">
 
                         <label for="max">Maksimum</label>
-                        <input id="max" name="max" type="text" class="form-control" value="{{ max }}">
+                        <input id="max" name="max" type="text" class="form-control" value="{{ max|default:'1' }}">
 
                         <button type="submit" class="btn btn-default">Generuj</button>
                     </form>
