@@ -55,7 +55,8 @@
                                class="form-control" value="{{ pop_count|default:'10' }}">
 
                         <label for="pop_size">Liczba bitów na osobnika</label>
-                        <input id="pop_size" name="pop_size" type="text" class="form-control" value="8">
+                        <input id="pop_size" name="pop_size" type="text"
+                               class="form-control" value="{{ pop_size|default:'8' }}">
 
 
                         <label for="gen_count">Liczba pokoleń</label>
@@ -79,10 +80,11 @@
                         </div>
 
                         <label for="cross_method">Krzyżowanie</label>
-                        <select name="cross_method" id="cross_method" class="selectpicker" data-style="btn-primary">
-                            <option>Jednopunktowe</option>
-                            <option>Dwupunktowe</option>
-                            <option>Średnia</option>
+                        <select name="cross_method" id="cross_method"
+                                class="selectpicker" data-style="btn-primary">
+                            <option value="0" {% if cross_method == '0' %}selected{% endif %}>Średnia</option>
+                            <option value="1" {% if cross_method == '1' %}selected{% endif %}>Jednopunktowe</option>
+                            <option value="2" {% if cross_method == '2' %}selected{% endif %}>Dwupunktowe</option>
                         </select>
 
                         <hr/>

@@ -3,9 +3,7 @@ import matplotlib.pyplot as plt
 from numpy import *
 from random import randrange, shuffle
 import itertools as it
-
-
-RESOLUTION = 1000.0
+import crossing
 
 class Genetic:
     def __init__(self):
@@ -18,11 +16,20 @@ class Genetic:
         self.pop_count = int(data['pop_count'])
         self.gen_count = int(data['gen_count'])
         self.tour_size = int(data['sel_method_param'])
+        self.resolution = self.range
+
+        try:
+           self.cross_func = crossing.table[int(data['cross_fun'])]
+        except:
+           self.cross_func = crossing.average
 
         self.minx = float(data['min'])
         self.maxx = float(data['max'])
 
-        x = arange(self.minx, self.maxx, (self.maxx-self.minx)/RESOLUTION)
+        self.crossing_params = (self.minx, self.maxx, self.resolution)
+
+        delta = (self.maxx-self.minx)/self.resolution
+        x = arange(self.minx, self.maxx, delta)
 
         m = self.find_min()
         extract_min = lambda d: ([p0['x'] for p0 in d], [p1['y'] for p1 in d])
@@ -30,6 +37,7 @@ class Genetic:
         mx, my = extract_min(m)
 
         plt.subplot(211)
+        plt.xlim([self.minx, self.maxx-delta])
         plt.plot(mx, my, 'ro')
         plt.plot(x, self.f(x))
 
@@ -45,9 +53,13 @@ class Genetic:
             except:
                 pass
 
+    def cross(self, x, y):
+        return self.cross_func(x, y, self.crossing_params)
+
     def gen_pop(self):
         k = randrange(self.range)/self.range
-        return self.minx + k * (self.maxx - self.minx)
+        dx = (self.maxx-self.minx)/self.resolution
+        return self.minx + int(k*self.resolution) * dx
 
     def group(self, x, n):
         for i in range(0, len(x), n):
@@ -60,7 +72,7 @@ class Genetic:
         nc = len(champs)
         for i in range(nc-1):
             for j in range(i+1, nc):
-                yield {'x': (champs[i]['x']+champs[j]['x'])/2.0}
+                yield {'x': self.cross(champs[i]['x'], champs[j]['x'])}
 
     def crossed_champs_list(self, champs, n):
         return list(it.islice(self.crossed_champs(champs), n))
