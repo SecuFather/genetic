@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+
+<title>Algorytmy genetyczne</title>
+</head>
+<body>	
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<img class="logo" src="{% static 'img/logo.jpg' %}" />
+				<a class="brand" href="/account/">Algorytmy genetyczne</a>
+
+				<div class="nav-collapse collapse">
+					<ul class="nav pull-right">
+						{% if user.is_authenticated %}
+						<li><a href="/account/manage/">Konto({{ user }})</a></li>
+						<li><a href="/logout/">Wyloguj</a></li> 
+						{% else %}
+						<li><a href="/login/">Zaloguj</a></li>
+						<li><a href="/register/">Rejestracja</a></li> 
+						{% endif %}
+					</ul>
+					<ul class="nav">
+						<li><a href="/account/">Lista użytkowników</a></li>
+						<li><a href="/ecg/">Kolekcja konfiguracji</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="well sidebar-nav">
+					{% block sidebar %}
+                    <form action="#" method="post">{% csrf_token %}
+                        <button type="submit" class="btn btn-default">Generuj</button>
+
+                        <label for="pop_count">Liczebność populacji</label>
+                        <input id="pop_count" name="pop_count" type="text" class="form-control" value="{{ pop_count }}">
+
+                        <label for="pop_size">Liczba bitów na osobnika</label>
+                        <input id="pop_size" name="pop_size" type="text" class="form-control" value="8">
+
+
+                        <label for="gen_count">Liczba pokoleń</label>
+                        <input id="gen_count" name="gen_count" type="text" class="form-control" value="{{ gen_count }}">
+
+                        <hr/>
+
+                        <label for="sel_method">Metoda selekcji</label>
+                        <select name="sel_method" id="sel_method" class="selectpicker" data-style="btn-primary">
+                            <option value="rulet">Selekcja metodą koła ruletki</option>
+                            <option value="turnee" selected>Selekcja turniejowa</option>
+                            <option value="rank">Selekcja rankingowa</option>
+                            <option value="elite">Strategia elitarna</option>
+                        </select>
+
+                        <div class="sel_method_param">
+                            <label for="sel_method_param" >Rozmiar turnieju</label>
+                            <input id="sel_method_param" name="sel_method_param" type="text" class="form-control" value="3">
+                        </div>
+
+                        <label for="cross_method">Krzyżowanie</label>
+                        <select name="cross_method" id="cross_method" class="selectpicker" data-style="btn-primary">
+                            <option>Jednopunktowe</option>
+                            <option>Dwupunktowe</option>
+                            <option>Średnia</option>
+                        </select>
+
+                        <hr/>
+
+                        <label for="function">Funkcja</label>
+                        <input id="function" name="function" type="text" class="form-control" value="{{ function }}">
+
+                        <label for="min">Minimum</label>
+                        <input id="min" name="min" type="text" class="form-control" value="{{ min }}">
+
+                        <label for="max">Maksimum</label>
+                        <input id="max" name="max" type="text" class="form-control" value="{{ max }}">
+
+                        <button type="submit" class="btn btn-default">Generuj</button>
+                    </form>
+                    {% endblock %}
+				</div>
+				<!--/.well -->
+			</div>
+			<!--/span-->
+			<div class="span9">
+				<div class="hero-unit">
+                    {% block content %}
+                    <img src="{% static 'img/plot.jpg' %}" />
+                    {% endblock %}
+                </div>
+			</div>
+			<!--/span-->
+		</div>
+		<!--/row-->
+	</div>
+	<!--/.fluid-container-->
+
+	<hr />
+	<footer>
+		<div class="container">
+			<p>&copy; Algorytmy genetyczne 2014</p>
+		</div>
+	</footer>
+
+
+	<script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+	{% block scripts %}{% endblock %}
+</body>
+</html>
