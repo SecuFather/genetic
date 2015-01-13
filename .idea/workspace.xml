@@ -59,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="func.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="func.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/genetic/func.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="44" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.8245614" vertical-offset="498" max-vertical-offset="2060">
+            <state line="9" column="12" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="2020">
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -70,10 +70,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="selecting.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/genetic/selecting.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="574">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="crossing.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/genetic/crossing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="27" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0" vertical-offset="186" max-vertical-offset="660">
+            <state line="7" column="42" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="86" max-vertical-offset="700">
               <folding />
             </state>
           </provider>
@@ -82,7 +91,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="54" selection-start="994" selection-end="994" vertical-scroll-proportion="-11.206897" vertical-offset="215" max-vertical-offset="2800">
+            <state line="83" column="51" selection-start="3605" selection-end="3617" vertical-scroll-proportion="-3.509091" vertical-offset="1467" max-vertical-offset="2800">
               <folding />
             </state>
           </provider>
@@ -91,7 +100,7 @@
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="36" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="340">
+            <state line="12" column="27" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
               <folding />
             </state>
           </provider>
@@ -112,11 +121,12 @@
         <option value="$PROJECT_DIR$/genetic/urls.py" />
         <option value="$PROJECT_DIR$/genetic/settings.py" />
         <option value="$PROJECT_DIR$/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/static/js/main.js" />
         <option value="$PROJECT_DIR$/genetic/views.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/genetic/crossing.py" />
         <option value="$PROJECT_DIR$/genetic/func.py" />
+        <option value="$PROJECT_DIR$/genetic/crossing.py" />
+        <option value="$PROJECT_DIR$/static/js/main.js" />
+        <option value="$PROJECT_DIR$/genetic/selecting.py" />
       </list>
     </option>
   </component>
@@ -150,6 +160,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -252,7 +263,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -260,8 +270,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../pycharm" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -425,7 +435,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29900333" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2982456" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -448,13 +458,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/genetic/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="24" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/genetic/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="11" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="240">
@@ -519,13 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="36" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/genetic/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="17" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="320">
@@ -533,26 +529,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/genetic/crossing.py">
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="27" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0" vertical-offset="186" max-vertical-offset="660">
+        <state line="83" column="51" selection-start="3605" selection-end="3617" vertical-scroll-proportion="-3.509091" vertical-offset="1467" max-vertical-offset="2800">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/static/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="54" selection-start="994" selection-end="994" vertical-scroll-proportion="-11.206897" vertical-offset="215" max-vertical-offset="2800">
+        <state line="12" column="27" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/genetic/crossing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="42" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="86" max-vertical-offset="700">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/genetic/func.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="44" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.8245614" vertical-offset="498" max-vertical-offset="2060">
+        <state line="9" column="12" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="2020">
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/genetic/selecting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="574">
+          <folding />
         </state>
       </provider>
     </entry>

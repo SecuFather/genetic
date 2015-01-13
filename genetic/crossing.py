@@ -23,5 +23,7 @@ def one_point(x, y, params):
     return minx + result/resolution*dd
 
 
+def two_point(x, y, params):
+    return one_point(one_point(x, y, params), y, params)
 
 table = [average, one_point]

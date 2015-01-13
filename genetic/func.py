@@ -44,7 +44,7 @@ class Genetic:
         plt.subplot(212)
         plt.plot(range(self.gen_count), my)
         plt.plot([0, self.gen_count-1], 2*[min(self.f(x))], 'r')
-        plt.plot([0, self.gen_count-1], 2*[my[-1]], 'g')
+        plt.plot([0, self.gen_count-1], 2*[min(my)], 'g')
 
         while True:
             try:
@@ -94,4 +94,3 @@ class Genetic:
             population = self.crossed_champs_list(champs, self.pop_count-len(champs))
             population += self.create_population(self.pop_count - len(population))
         return res
-

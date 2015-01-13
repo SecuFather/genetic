@@ -8,5 +8,9 @@ function onReady() {
             sel_method_param.hide();
         }
     });
+
+    $('.selectpicker').change(function() {
+        this.form.submit();
+    });
 }
 $(document).ready(onReady);
