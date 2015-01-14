@@ -1,9 +1,11 @@
 from __future__ import division
+import poplib
 import matplotlib.pyplot as plt
 from numpy import *
-from random import randrange, shuffle
+import random
 import itertools as it
 import crossing
+import selecting
 
 class Genetic:
     def __init__(self):
@@ -13,38 +15,47 @@ class Genetic:
         plt.clf()
         self.f = lambda x: eval(data['function'])
         self.range = 2**int(data['pop_size'])
+        self.pop_size = int(data['pop_size'])
         self.pop_count = int(data['pop_count'])
         self.gen_count = int(data['gen_count'])
         self.tour_size = int(data['sel_method_param'])
-        self.resolution = self.range
-
-        try:
-           self.cross_func = crossing.table[int(data['cross_fun'])]
-        except:
-           self.cross_func = crossing.average
 
         self.minx = float(data['min'])
         self.maxx = float(data['max'])
+        self.width = self.maxx - self.minx
 
-        self.crossing_params = (self.minx, self.maxx, self.resolution)
 
-        delta = (self.maxx-self.minx)/self.resolution
-        x = arange(self.minx, self.maxx, delta)
+        try:
+            self.cross_func = crossing.table[int(data['cross_fun'])]
+        except:
+            self.cross_func = crossing.average
 
-        m = self.find_min()
-        extract_min = lambda d: ([p0['x'] for p0 in d], [p1['y'] for p1 in d])
+        try:
+            self.select_func = crossing.table[int(data['sel_method'])]
+        except:
+            self.select_func = selecting.rulette
+
+
+        m = list(self.find_min())
+        extract_min = lambda d: ([self.getx(p0['x']) for p0 in d], [p1['y'] for p1 in d])
 
         mx, my = extract_min(m)
+
+        delta = (self.maxx-self.minx)/self.range
+        x = arange(self.minx, self.maxx, delta)
+        y = self.f(x)
 
         plt.subplot(211)
         plt.xlim([self.minx, self.maxx-delta])
         plt.plot(mx, my, 'ro')
-        plt.plot(x, self.f(x))
+        plt.plot(x, y)
 
         plt.subplot(212)
-        plt.plot(range(self.gen_count), my)
-        plt.plot([0, self.gen_count-1], 2*[min(self.f(x))], 'r')
-        plt.plot([0, self.gen_count-1], 2*[min(my)], 'g')
+        lims = [0, self.gen_count-1]
+        plt.xlim(lims)
+        plt.plot(range(len(my)), my)
+        plt.plot(lims, 2*[min(y)], 'r')
+        plt.plot(lims, 2*[min(my)], 'g')
 
         while True:
             try:
@@ -53,44 +64,39 @@ class Genetic:
             except:
                 pass
 
-    def cross(self, x, y):
-        return self.cross_func(x, y, self.crossing_params)
+    def getx(self, x):
+        return self.minx + x*self.width/self.range
 
-    def gen_pop(self):
-        k = randrange(self.range)/self.range
-        dx = (self.maxx-self.minx)/self.resolution
-        return self.minx + int(k*self.resolution) * dx
+    def fitness(self, x):
+        return self.f(self.getx(x))
 
-    def group(self, x, n):
-        for i in range(0, len(x), n):
-            yield x[i:i+n]
-
-    def create_population(self, n):
-        return [{'x': self.gen_pop()} for i in range(n)]
-
-    def crossed_champs(self, champs):
-        nc = len(champs)
-        for i in range(nc-1):
-            for j in range(i+1, nc):
-                yield {'x': self.cross(champs[i]['x'], champs[j]['x'])}
-
-    def crossed_champs_list(self, champs, n):
-        return list(it.islice(self.crossed_champs(champs), n))
+    def min(self, population):
+        return min(population, key=lambda x: x['y'])
 
     def find_min(self):
-        key = lambda x: x['y']
-        population = self.create_population(self.pop_count)
-        res = []
+        population = self.init()
 
         for i in range(self.gen_count):
-            for p in population:
-                p['y'] = self.f(p['x'])
+            best, rated = self.rate(population)
+            selected = self.select(rated)
+            population = self.cross(selected)
 
-            g = list(self.group(population, self.tour_size))
+            yield best
 
-            champs = [min(p, key=key) for p in g]
-            res.append(min(champs, key=key))
 
-            population = self.crossed_champs_list(champs, self.pop_count-len(champs))
-            population += self.create_population(self.pop_count - len(population))
-        return res
+    def init(self):
+        return [{'x': random.randrange(self.range)} for _ in range(self.pop_count)]
+
+
+    def rate(self, population):
+        for p in population:
+            p['y'] = self.fitness(p['x'])
+
+        return self.min(population), population
+
+    def select(self, population):
+        return self.select_func(population)
+
+    def cross(self, population):
+        return self.cross_func(population)
+
