@@ -31,7 +31,7 @@ class Genetic:
             self.cross_func = crossing.average
 
         try:
-            self.select_func = crossing.table[int(data['sel_method'])]
+            self.select_func = selecting.rulette
         except:
             self.select_func = selecting.rulette
 
@@ -70,8 +70,6 @@ class Genetic:
     def fitness(self, x):
         return self.f(self.getx(x))
 
-    def min(self, population):
-        return min(population, key=lambda x: x['y'])
 
     def find_min(self):
         population = self.init()
@@ -92,11 +90,11 @@ class Genetic:
         for p in population:
             p['y'] = self.fitness(p['x'])
 
-        return self.min(population), population
+        return selecting.minp(population), population
 
     def select(self, population):
-        return self.select_func(population)
+        return [(self.select_func(population), self.select_func(population)) for _ in population]
 
     def cross(self, population):
-        return self.cross_func(population)
+        return [self.cross_func(p) for p in population]
 
