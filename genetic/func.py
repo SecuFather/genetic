@@ -26,12 +26,13 @@ class Genetic:
 
 
         try:
-            self.cross_func = crossing.table[int(data['cross_fun'])]
+            self.cross_func = crossing.table[int(data['cross_method'])]
         except:
             self.cross_func = crossing.average
 
+        select_table=[selecting.rulette, lambda x: selecting.turnee(x, self.tour_size)]
         try:
-            self.select_func = selecting.rulette
+            self.select_func = select_table[int(data['sel_method'])]
         except:
             self.select_func = selecting.rulette
 
@@ -42,13 +43,13 @@ class Genetic:
         mx, my = extract_min(m)
 
         delta = (self.maxx-self.minx)/self.range
-        x = arange(self.minx, self.maxx, delta)
-        y = self.f(x)
+        x = range(self.range)
+        y = [self.fitness(i) for i in x]
 
         plt.subplot(211)
         plt.xlim([self.minx, self.maxx-delta])
         plt.plot(mx, my, 'ro')
-        plt.plot(x, y)
+        plt.plot([self.getx(i) for i in x], y)
 
         plt.subplot(212)
         lims = [0, self.gen_count-1]
@@ -65,7 +66,7 @@ class Genetic:
                 pass
 
     def getx(self, x):
-        return self.minx + x*self.width/self.range
+        return self.minx + self.width/self.range*x
 
     def fitness(self, x):
         return self.f(self.getx(x))
@@ -76,7 +77,7 @@ class Genetic:
 
         for i in range(self.gen_count):
             best, rated = self.rate(population)
-            selected = self.select(rated)
+            selected = self.select_func(population)
             population = self.cross(selected)
 
             yield best
@@ -91,9 +92,6 @@ class Genetic:
             p['y'] = self.fitness(p['x'])
 
         return selecting.minp(population), population
-
-    def select(self, population):
-        return [(self.select_func(population), self.select_func(population)) for _ in population]
 
     def cross(self, population):
         return [self.cross_func(p) for p in population]

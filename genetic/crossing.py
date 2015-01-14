@@ -2,7 +2,7 @@ from random import randint
 
 def average(population):
     man, woman = population
-    return {'x':(man['x'] + woman['x'])/2.0}
+    return {'x':(man['x'] + woman['x'])/2}
 
 def one_point(population):
     return population
