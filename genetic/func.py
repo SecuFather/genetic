@@ -1,9 +1,6 @@
-from __future__ import division
-import poplib
 import matplotlib.pyplot as plt
 from numpy import *
 import random
-import itertools as it
 import crossing
 import selecting
 
@@ -25,6 +22,7 @@ class Genetic:
         self.width = self.maxx - self.minx
 
 
+        cross_table = [crossing.average, crossing.one_point, crossing.two_point]
         try:
             self.cross_func = crossing.table[int(data['cross_method'])]
         except:
@@ -42,7 +40,7 @@ class Genetic:
 
         mx, my = extract_min(m)
 
-        delta = (self.maxx-self.minx)/self.range
+        delta = self.width/self.range
         x = range(self.range)
         y = [self.fitness(i) for i in x]
 
@@ -94,5 +92,5 @@ class Genetic:
         return selecting.minp(population), population
 
     def cross(self, population):
-        return [self.cross_func(p) for p in population]
+        return [self.cross_func(p, self.pop_size) for p in population]
 

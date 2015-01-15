@@ -1,13 +1,18 @@
-from random import randint
+import random
 
-def average(population):
-    man, woman = population
-    return {'x':(man['x'] + woman['x'])/2}
+def average(couple, pop_size):
+    man, woman = couple
+    return {'x': (man['x'] + woman['x'])/2}
 
-def one_point(population):
-    return population
+def one_point(couple, pop_size):
+    man, woman = couple
+    g_point = random.randrange(pop_size)
+    wmask = 2**g_point-1
+    mmask = 2**pop_size-1-wmask
 
-def two_point(population):
-    return population
+    return {'x': (mmask & man['x']) | (wmask & woman['x'])}
+
+def two_point(couple, pop_size):
+    return couple
 
 table = [average, one_point, two_point]
