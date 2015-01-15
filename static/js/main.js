@@ -4,6 +4,8 @@ function onReady() {
         this.form.submit();
     });
 
-
+    $('#cross_method').change(function() {
+        this.form.submit();
+    });
 }
 $(document).ready(onReady);
