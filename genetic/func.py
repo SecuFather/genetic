@@ -18,7 +18,7 @@ class Genetic:
         self.pop_size = int(data['pop_size'])
         self.pop_count = int(data['pop_count'])
         self.gen_count = int(data['gen_count'])
-        self.tour_size = int(data['sel_method_param'])
+        self.sel_method_param = int(data['sel_method_param'])
 
         self.minx = float(data['min'])
         self.maxx = float(data['max'])
@@ -30,7 +30,7 @@ class Genetic:
         except:
             self.cross_func = crossing.average
 
-        select_table=[selecting.rulette, lambda x: selecting.turnee(x, self.tour_size)]
+        select_table = [selecting.rulette, selecting.turnee, selecting.ranking, selecting.elite]
         try:
             self.select_func = select_table[int(data['sel_method'])]
         except:
@@ -77,7 +77,7 @@ class Genetic:
 
         for i in range(self.gen_count):
             best, rated = self.rate(population)
-            selected = self.select_func(population)
+            selected = self.select_func(population, self.sel_method_param)
             population = self.cross(selected)
 
             yield best
