@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from numpy import *
 import random
 import crossing
+from genetic import mutation
 import selecting
 
 class Genetic:
@@ -16,6 +17,7 @@ class Genetic:
         self.pop_count = int(data['pop_count'])
         self.gen_count = int(data['gen_count'])
         self.sel_method_param = int(data['sel_method_param'])
+        self.mut_param = float(data['mut_method_param'])
 
         self.minx = float(data['min'])
         self.maxx = float(data['max'])
@@ -24,7 +26,7 @@ class Genetic:
 
         cross_table = [crossing.average, crossing.one_point, crossing.two_point]
         try:
-            self.cross_func = crossing.table[int(data['cross_method'])]
+            self.cross_func = cross_table[int(data['cross_method'])]
         except:
             self.cross_func = crossing.average
 
@@ -34,20 +36,25 @@ class Genetic:
         except:
             self.select_func = selecting.rulette
 
+        mut_table = [mutation.inversion, mutation.defect, mutation.swap]
+        try:
+            self.mut_func = mut_table[int(data['mut_method'])]
+        except:
+            self.mut_func = mutation.inversion
 
         m = list(self.find_min())
         extract_min = lambda d: ([self.getx(p0['x']) for p0 in d], [p1['y'] for p1 in d])
 
         mx, my = extract_min(m)
-
         delta = self.width/self.range
-        x = range(self.range)
+        x = range(0, self.range, 1 if self.pop_size <= 8 else self.range/256)
         y = [self.fitness(i) for i in x]
 
         plt.subplot(211)
         plt.xlim([self.minx, self.maxx-delta])
         plt.plot(mx, my, 'ro')
         plt.plot([self.getx(i) for i in x], y)
+
 
         plt.subplot(212)
         lims = [0, self.gen_count-1]
@@ -77,6 +84,7 @@ class Genetic:
             best, rated = self.rate(population)
             selected = self.select_func(population, self.sel_method_param)
             population = self.cross(selected)
+            self.mutate(population)
 
             yield best
 
@@ -94,3 +102,7 @@ class Genetic:
     def cross(self, population):
         return [self.cross_func(p, self.pop_size) for p in population]
 
+    def mutate(self, population):
+        if random.uniform(0, 1) < self.mut_param:
+            beast = random.choice(population)
+            beast['x'] = self.mut_func(beast['x'], self.pop_size)

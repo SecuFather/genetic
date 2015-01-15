@@ -24,5 +24,3 @@ def two_point(couple, pop_size):
     mmask = 2**pop_size-1-wmask
 
     return _mask_couple(man, woman, mmask, wmask)
-
-table = [average, one_point, two_point]

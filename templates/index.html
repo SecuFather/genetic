@@ -89,6 +89,21 @@
 
                         <hr/>
 
+                        <label for="mut_method">Metoda mutacji</label>
+                        <select name="mut_method" id="mut_method" class="selectpicker" data-style="btn-primary">
+                            <option value="0"  {% if sel_method == '0' %}selected{% endif %}>Inwersja</option>
+                            <option value="1" {% if sel_method == '1' %}selected{% endif %}>Defekt</option>
+                            <option value="2" {% if sel_method == '2' %}selected{% endif %}>Swap</option>
+                        </select>
+
+                        <div class="mut_method_param">
+                            <label for="mut_method_param" >Prawdopodobienstwo</label>
+                            <input id="mut_method_param" name="mut_method_param" type="text"
+                                   class="form-control" value="{{ mut_method_param|default:'0.001' }}">
+                        </div>
+
+                        <hr/>
+
                         <label for="function">Funkcja</label>
                         <input id="function" name="function" type="text"
                                class="form-control" value="{{ function|default:'-x*x - x + cos(10*x) - sin(50*x)' }}">
