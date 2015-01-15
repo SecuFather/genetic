@@ -36,11 +36,11 @@ class Genetic:
         except:
             self.select_func = selecting.rulette
 
-        mut_table = [mutation.inversion, mutation.defect, mutation.swap]
+        mut_table = [mutation.negation, mutation.defect, mutation.swap]
         try:
             self.mut_func = mut_table[int(data['mut_method'])]
         except:
-            self.mut_func = mutation.inversion
+            self.mut_func = mutation.negation
 
         m = list(self.find_min())
         extract_min = lambda d: ([self.getx(p0['x']) for p0 in d], [p1['y'] for p1 in d])
