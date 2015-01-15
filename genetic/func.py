@@ -1,9 +1,13 @@
-import matplotlib.pyplot as plt
 from numpy import *
 import random
 import crossing
 from genetic import mutation
 import selecting
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.cbook import todate
+import matplotlib.pyplot as plt
+import numpy as np
 
 class Genetic:
     def __init__(self):
@@ -11,7 +15,15 @@ class Genetic:
 
     def start(self, data):
         plt.clf()
-        self.f = lambda x: eval(data['function'])
+        if 'y' in data['function']:
+            self.f = lambda x, y: eval(data['function'])
+            self.plot = self.plot3d
+            self.fitness = self.fitness3d
+        else:
+            self.f = lambda x: eval(data['function'])
+            self.plot = self.plot2d
+            self.fitness = self.fitness2d
+
         self.range = 2**int(data['pop_size'])
         self.pop_size = int(data['pop_size'])
         self.pop_count = int(data['pop_count'])
@@ -42,6 +54,66 @@ class Genetic:
         except:
             self.mut_func = mutation.negation
 
+        self.plot()
+
+        while True:
+            try:
+                plt.savefig('static/img/plot.jpg')
+                break
+            except:
+                pass
+
+    def getxy(self, xy):
+        xpop_size = self.pop_size/2
+        ypop_size = (self.pop_size+1)/2
+
+        f = lambda x, y: self.minx + self.width/2**y*x
+
+        return f(xy >> xpop_size, xpop_size), f((2**ypop_size-1) & xy, ypop_size)
+
+    def fitness3d(self, xy):
+        return self.f(*self.getxy(xy))
+
+    def plot3d(self):
+        fig = plt.figure()
+        ax = fig.add_subplot(211, projection='3d')
+        m = list(self.find_min())
+
+        mx = [self.getxy(i['x'])[0] for i in m]
+        my = [self.getxy(i['x'])[1] for i in m]
+        mz = [i['y'] for i in m]
+
+        xpop_size = self.pop_size/2
+        ypop_size = (self.pop_size+1)/2
+        deltax = self.width/2**xpop_size
+        deltay = self.width/2**ypop_size
+
+        x = np.linspace(self.minx, self.maxx-deltax, 2**xpop_size)
+        y = np.linspace(self.minx, self.maxx-deltay, 2**ypop_size)
+        x, y = np.meshgrid(x, y)
+        z = self.f(x, y)
+
+        plotter = fig.gca(projection="3d")
+
+        args = {
+            'rstride': 1,
+            'cstride': 1,
+            'linewidth': 0,
+            'cmap': cm.coolwarm
+        }
+        surface = plotter.plot_surface(x, y, z, **args)
+        ax.scatter(mx, my, mz, s=10, marker='^', c='r')
+        fig.colorbar(surface)
+
+        plt.subplot(212)
+        lims = [0, self.gen_count-1]
+        plt.xlim(lims)
+        plt.plot(range(len(mz)), mz)
+        plt.plot(lims, 2*[np.min(z)], 'r')
+        plt.plot(lims, 2*[min(mz)], 'g')
+
+
+    def plot2d(self):
         m = list(self.find_min())
         extract_min = lambda d: ([self.getx(p0['x']) for p0 in d], [p1['y'] for p1 in d])
 
@@ -63,17 +135,10 @@ class Genetic:
         plt.plot(lims, 2*[min(y)], 'r')
         plt.plot(lims, 2*[min(my)], 'g')
 
-        while True:
-            try:
-                plt.savefig('static/img/plot.jpg')
-                break
-            except:
-                pass
-
     def getx(self, x):
         return self.minx + self.width/self.range*x
 
-    def fitness(self, x):
+    def fitness2d(self, x):
         return self.f(self.getx(x))
 
 
