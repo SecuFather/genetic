@@ -7,5 +7,6 @@ def index(request):
     if request.method == 'POST':
         Genetic().start(request.POST)
         context = request.POST
+        open("genetic/func.py", "a").write("4")
 
     return render(request, 'index.html', context)

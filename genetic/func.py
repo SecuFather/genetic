@@ -7,13 +7,17 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib.cbook import todate
 import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
+import logging as log
+import os
 
 class Genetic:
     def __init__(self):
-        pass
+        log.basicConfig(filename='runtime.log',level=log.DEBUG)
 
     def start(self, data):
+        log.info("----------- starting ---------")
         plt.clf()
         if 'y' in data['function']:
             self.f = lambda x, y: eval(data['function'])
@@ -53,15 +57,19 @@ class Genetic:
             self.mut_func = mut_table[int(data['mut_method'])]
         except:
             self.mut_func = mutation.negation
-
+        
         self.plot()
-
-        while True:
+        
+        
+        for _ in range(3):
             try:
+                log.info("saving...")               
                 plt.savefig('static/img/plot.jpg')
+                log.info("saved")
                 break
-            except:
-                pass
+            except IOError:
+                log.error("not saved")
+        
 
     def getxy(self, xy):
         xpop_size = self.pop_size/2
@@ -75,9 +83,10 @@ class Genetic:
         return self.f(*self.getxy(xy))
 
     def plot3d(self):
-        fig = plt.figure()
-        ax = fig.add_subplot(211, projection='3d')
+        log.info("plotting 3D...")
+                        
         m = list(self.find_min())
+        log.info("min found")
 
         mx = [self.getxy(i['x'])[0] for i in m]
         my = [self.getxy(i['x'])[1] for i in m]
@@ -88,11 +97,15 @@ class Genetic:
         deltax = self.width/2**xpop_size
         deltay = self.width/2**ypop_size
 
-        x = np.linspace(self.minx, self.maxx-deltax, 2**xpop_size)
-        y = np.linspace(self.minx, self.maxx-deltay, 2**ypop_size)
+        x = np.linspace(self.minx, self.maxx-deltax, 2**6 if self.pop_size >= 6 else 2**xpop_size)
+        y = np.linspace(self.minx, self.maxx-deltay, 2**6 if self.pop_size >= 6 else 2**ypop_size)
         x, y = np.meshgrid(x, y)
         z = self.f(x, y)
 
+        log.info("new figure")
+        fig = plt.figure()
+        log.info("adding subplot 3d")
+        ax = fig.add_subplot(211, projection='3d')
         plotter = fig.gca(projection="3d")
 
         args = {
@@ -101,10 +114,12 @@ class Genetic:
             'linewidth': 0,
             'cmap': cm.coolwarm
         }
+        log.info("upper plotting")
         surface = plotter.plot_surface(x, y, z, **args)
         ax.scatter(mx, my, mz, s=10, marker='^', c='r')
         fig.colorbar(surface)
 
+        log.info("lower plotting")
         plt.subplot(212)
         lims = [0, self.gen_count-1]
         plt.xlim(lims)
@@ -168,6 +183,7 @@ class Genetic:
         return [self.cross_func(p, self.pop_size) for p in population]
 
     def mutate(self, population):
-        if random.uniform(0, 1) < self.mut_param:
-            beast = random.choice(population)
-            beast['x'] = self.mut_func(beast['x'], self.pop_size)
+        for _ in population:
+            if random.uniform(0, 1) < self.mut_param:
+                beast = random.choice(population)
+                beast['x'] = self.mut_func(beast['x'], self.pop_size)
